@@ -5,7 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,8 @@ import com.google.gson.reflect.TypeToken;
 import br.com.cinqtech.model.Usuario;
 
 public class UsuarioDao {
-	
-	private static final String nomeArq = "src\\main\\resources\\Usuario.json";
+
+	private static final String nomeArq = "Usuario.json"; //"WEB-INF\\classes\\Usuario.json";
 	
 	private static UsuarioDao INSTANCE;
 	
@@ -57,12 +58,16 @@ public class UsuarioDao {
 	private  void lerArquivo() {
 		Gson gson = new Gson(); 
 		BufferedReader br = null;
+
+		ClassLoader classLoader = getClass().getClassLoader();
+		String realPath= classLoader.getResource(nomeArq).getFile();
+			
 		try {
-			br = new BufferedReader( new FileReader(nomeArq));
+			br = new BufferedReader( new FileReader(realPath));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
+		
 		this.users = ((List<Usuario>) gson.fromJson(br, new TypeToken<List<Usuario>>(){}.getType() ));
          
         //Imprime no console o Objeto JSON para vizualização
@@ -112,4 +117,28 @@ public class UsuarioDao {
 		}
 	}
 
+	public Usuario buscarUsuario(Usuario user) {	
+		if(user != null) {
+			if(users.contains(user) ) {
+				return users.get(users.indexOf(user));
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+	
+	public String getPath() throws UnsupportedEncodingException {
+		String path = this.getClass().getClassLoader().getResource("").getPath();
+		String fullPath = URLDecoder.decode(path, "UTF-8");
+		String pathArr[] = fullPath.split("/WEB-INF/classes/");
+		System.out.println(fullPath);
+		System.out.println(pathArr[0]);
+		fullPath = pathArr[0];
+		//String reponsePath = "";
+		// to read a file from webcontent
+		//reponsePath = new File(fullPath).getPath() + File.separatorChar + "newfile.txt";
+		return fullPath;
+	}
 }

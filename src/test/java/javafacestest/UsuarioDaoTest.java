@@ -33,10 +33,15 @@ public class UsuarioDaoTest {
 	}
 	
 	@Test
+	public void testBuscarUsuario() {		
+		Usuario user = userDAO.buscarUsuario(new Usuario(null,"admin@mail.com",null));
+		Assert.assertEquals("Administrador", user.getNome() );
+	}
+	
+	@Test
 	public void testExcluirUsuario() {		
 		Usuario user = new Usuario("Teste12","teste1@mail.com","teste123");
 		Assert.assertEquals(true, userDAO.excluirUsuario(user));
 	}
-
 
 }
