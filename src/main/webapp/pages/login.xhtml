@@ -1,25 +1,41 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:f="http://xmlns.jcp.org/jsf/core"
-	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	  xmlns:p="http://primefaces.org/ui">
-
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Login JavaFacetTest</title>
+	<h:outputStylesheet library="css" name="sistema.css" />
 </h:head>
-
 <h:body>
-	<h1>Login</h1>
-	<h:form>
-		<h:panelGrid columns="2">
-			Nome: <p:inputText />
-			Senha: <p:password />
-			<h:commandButton value="Login"/>
-		</h:panelGrid>
-	</h:form>
-</h:body>
+	<div id="div-login">
+		<h:form id="frmLogin">
+			<p:panel style="border: none;">
+				<p>Login</p>
+				<p:growl showDetail="false" life="3000" />
+				<p:panelGrid columns="2" styleClass="grid-login">
+					<p:outputLabel value="Usuário" />
+					<p:inputText value="#{loginController.login}" label="Login"
+						id="login" rendered="true">
+						<f:validateLength minimum="4" />
+					</p:inputText>
 
+					<p:outputLabel value="Senha" />
+					<p:password value="#{loginController.senha}" label="Password"
+						id="senha" rendered="true" autocomplete="off">
+						<f:validateLength minimum="4" />
+					</p:password>
+					<p:commandButton action="#{loginController.entrar}" value="Entrar"
+						ajax="false" icon="ui-icon-star" />
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</div>
+</h:body>
 </html>

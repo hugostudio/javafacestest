@@ -24,6 +24,14 @@ public class LoginController extends AbstractController {
 	private String login;
 	private String senha;
 	
+	public UsuarioController getUsuarioController() {
+		return usuarioController;
+	}
+
+	public void setUsuarioController(UsuarioController usuarioController) {
+		this.usuarioController = usuarioController;
+	}
+
 	public String getLogin() {
 		return login;
 	}
@@ -46,7 +54,7 @@ public class LoginController extends AbstractController {
 		 */
 		Usuario user;
 		if(login.equals("admin@mail.com")) {
-			user = new Usuario("Administrador","admin@mail.com","#5sdf4");
+			user = new Usuario("Administrador","admin@mail.com","masterkey");
 		}else {
 			user = null;
 		}
@@ -66,7 +74,7 @@ public class LoginController extends AbstractController {
 			FacesContext context = FacesContext.getCurrentInstance();
 			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 			request.getSession().setAttribute("user", user);
-			return "index";
+			return "index.xhtml";
 		}
 		displayErrorMessage("Verifique seu login e senha !");
 		

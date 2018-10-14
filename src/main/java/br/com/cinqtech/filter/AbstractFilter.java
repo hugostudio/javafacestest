@@ -20,12 +20,12 @@ public class AbstractFilter {
 	}
 
 	protected void doLogin(ServletRequest request, ServletResponse response, HttpServletRequest req) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("login");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("login.xhtml");
 		dispatcher.forward(request, response);
 	}
 	
 	protected void acessoNegado(ServletRequest request, ServletResponse response, HttpServletRequest req) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("acessoNegado");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("acessoNegado.xhtml");
 		dispatcher.forward(request, response);
 	}
 }
