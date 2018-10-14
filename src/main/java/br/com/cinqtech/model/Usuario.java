@@ -1,13 +1,13 @@
 package br.com.cinqtech.model;
 
 import java.io.Serializable;
+
 /**
  * 
  * @author Hugo Leonardo
  *
  * Classe que representa o modelo do Usuário
  */
-
 
 public class Usuario implements Serializable {
 
