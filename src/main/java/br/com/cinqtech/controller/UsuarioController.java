@@ -32,7 +32,7 @@ public class UsuarioController extends AbstractController{
 	
 	public String logOut() {
 		((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false)).invalidate();
-		return "login";
+		return "index.xhtml?faces-redirect=true";
 	}
 
 }

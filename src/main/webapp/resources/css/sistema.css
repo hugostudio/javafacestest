@@ -20,7 +20,12 @@ h1 {
 .grid-login{
     background-color: #f2f2f2;
     border-radius: 8px;
-    boder: 1px solid #ccc;
+    boder: 0px ;
     margin-top: 8px;
     padding: 10px;
+}
+
+.noBorders tr, .noBorders td {
+    background: none !important;
+    border: none !important;
 }

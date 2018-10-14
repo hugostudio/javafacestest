@@ -16,25 +16,37 @@ and open the template in the editor.
 <h:body>
 	<div id="div-login">
 		<h:form id="frmLogin">
-			<p:panel style="border: none;">
-				<p>Login</p>
-				<p:growl showDetail="false" life="3000" />
-				<p:panelGrid columns="2" styleClass="grid-login">
+			<p:growl showDetail="false" life="3000" />
+			<p:dialog header="Login - Informe usuario e senha" id="dialog"
+				minWidth="350" width="350" modal="true" closable="false"
+				position="center" showEffect="slide" draggable="false"
+				resizable="false" visible="true">
+				
+				<div style="float: left;">
+					<h:graphicImage library="imagens" name="CINQ_CORES.png" width="100" />
+				</div>
+				
+				<h:panelGrid columns="2" styleClass="noBorders">
+				
 					<p:outputLabel value="Usuário" />
-					<p:inputText value="#{loginController.login}" label="Login"
-						id="login" rendered="true">
-						<f:validateLength minimum="4" />
+					<p:inputText value="#{loginController.login}" label="Login" requiredMessage="O preenchimento do Usuário é obrigatório" validatorMessage="Usuário com tamanho errado"
+						placeholder="informe o email do usuário" id="login" rendered="true" required="true" size="25">
+						<f:validateLength minimum="4" maximum="50" />
 					</p:inputText>
 
 					<p:outputLabel value="Senha" />
-					<p:password value="#{loginController.senha}" label="Password"
-						id="senha" rendered="true" autocomplete="off">
-						<f:validateLength minimum="4" />
+					<p:password value="#{loginController.senha}" label="Password" requiredMessage="O preenchimento da Senha é obrigatório" validatorMessage="Senha com tamanho errado"
+						id="senha" rendered="true" required="true" size="25"
+						autocomplete="off">
+						<f:validateLength minimum="4" maximum="50" />
 					</p:password>
+					
+					<p:outputLabel />
 					<p:commandButton action="#{loginController.entrar}" value="Entrar"
 						ajax="false" icon="ui-icon-star" />
-				</p:panelGrid>
-			</p:panel>
+				</h:panelGrid>
+				
+			</p:dialog>
 		</h:form>
 	</div>
 </h:body>
