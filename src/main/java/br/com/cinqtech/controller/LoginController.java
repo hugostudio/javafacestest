@@ -6,6 +6,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import br.com.cinqtech.exception.ErroSistema;
 import br.com.cinqtech.model.Usuario;
 import br.com.cinqtech.model.dao.UsuarioDao;
 
@@ -58,11 +59,11 @@ public class LoginController extends AbstractController {
 		this.senha = senha;
 	}
 
-	private Usuario isValidLogin(String login, String senha) {
+	private Usuario isValidLogin(String login, String senha) throws ErroSistema {
 		tentativaLogin = tentativaLogin - 1;
 		System.out.println("tentativaLogin : " + tentativaLogin);
 
-		Usuario user = UsuarioDao.getInstace().buscarUsuario(new Usuario(null, login, null));
+		Usuario user = UsuarioDao.getInstace().buscar(new Usuario(null, login, null));
 
 		if (user == null || !senha.toUpperCase().equals(user.getSenha().toUpperCase())) {
 			return null;
@@ -71,7 +72,7 @@ public class LoginController extends AbstractController {
 		return user;
 	}
 
-	public String entrar() {
+	public String entrar() throws ErroSistema {
 		if (tentativaLogin.equals(0)) {
 			tentativaLogin = 3;
 			System.out.println("tentativaLogin : " + tentativaLogin);

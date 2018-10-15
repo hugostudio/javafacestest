@@ -16,7 +16,7 @@ import br.com.cinqtech.model.Usuario;
 
 @SessionScoped
 @ManagedBean(name="usuarioController")
-public class UsuarioController extends AbstractController{
+public class UsuarioController extends CrudController{
 	
 	public static final String INJECTION_NAME = "#{usuarioController}";
 	

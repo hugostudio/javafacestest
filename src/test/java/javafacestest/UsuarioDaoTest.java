@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.cinqtech.exception.ErroSistema;
 import br.com.cinqtech.model.Usuario;
 import br.com.cinqtech.model.dao.UsuarioDao;
 
@@ -19,29 +20,29 @@ public class UsuarioDaoTest {
 	}
 
 	@Test
-	public void testIncluirUsuario() {
+	public void testIncluirUsuario() throws ErroSistema {
 		Usuario user = new Usuario("Teste1","teste1@mail.com","teste123");
-		userDAO.incluirUsuario(user);		
+		userDAO.incluir(user);		
 		Assert.assertEquals(totalUsuarios+1, userDAO.getUsers().size());		
 	}
 	
 	@Test
-	public void testAlterarUsuario() {
+	public void testAlterarUsuario() throws ErroSistema {
 		Usuario user = new Usuario("Teste12","teste1@mail.com","teste123");		
-		userDAO.alterarUsuario(user);
+		userDAO.alterar(user);
 		Assert.assertEquals(totalUsuarios.intValue(), userDAO.getUsers().size());
 	}
 	
 	@Test
-	public void testBuscarUsuario() {		
-		Usuario user = userDAO.buscarUsuario(new Usuario(null,"admin@mail.com",null));
+	public void testBuscarUsuario() throws ErroSistema {		
+		Usuario user = userDAO.buscar(new Usuario(null,"admin@mail.com",null));
 		Assert.assertEquals("Administrador", user.getNome() );
 	}
 	
 	@Test
-	public void testExcluirUsuario() {		
+	public void testExcluirUsuario() throws ErroSistema {		
 		Usuario user = new Usuario("Teste12","teste1@mail.com","teste123");
-		Assert.assertEquals(true, userDAO.excluirUsuario(user));
+		Assert.assertEquals(true, userDAO.excluir(user));
 	}
 
 }

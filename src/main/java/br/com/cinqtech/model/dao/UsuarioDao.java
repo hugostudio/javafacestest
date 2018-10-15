@@ -5,17 +5,22 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import br.com.cinqtech.exception.ErroSistema;
 import br.com.cinqtech.model.Usuario;
+/**
+ * 
+ * @author Hugo Leonardo
+ *
+ * Classe que representa as interações de manipulação de dados do Usuario
+ */
 
-public class UsuarioDao {
+public class UsuarioDao implements CrudDao<Usuario>{
 
 	private static final String nomeArq = "Usuario.json"; //"WEB-INF\\classes\\Usuario.json";
 	
@@ -74,71 +79,79 @@ public class UsuarioDao {
         System.out.println(users.toString());
 	}
 	
-	public Boolean incluirUsuario(Usuario user) {	
-		if(user != null) {
-			if(!users.contains(user)) {
-				users.add(user);
-				gravarArquivo();
-				return true;
+
+	@Override
+	public Boolean incluir(Usuario entidade) throws ErroSistema {
+		try {
+			if(entidade != null) {
+				if(!users.contains(entidade)) {
+					users.add(entidade);
+					gravarArquivo();
+					return true;
+				} else {
+					return false;
+				}
 			} else {
 				return false;
 			}
-		} else {
-			return false;
-		}
-	}
-	
-	public Boolean excluirUsuario(Usuario user) {	
-		if(user != null) {
-			if(users.contains(user) ) {
-				users.remove(user);
-				gravarArquivo();
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
+		} catch (Exception ex) {
+            throw new ErroSistema("Erro ao tentar incluir !", ex);
+        }
 	}
 
-	public Boolean alterarUsuario(Usuario user) {	
-		if(user != null) {
-			if(users.contains(user) ) {
-				users.remove(user);
-				users.add(user);
-				gravarArquivo();
-				return true;
+	@Override
+	public Boolean excluir(Usuario entidade) throws ErroSistema {
+		try {
+			if(entidade != null) {
+				if(users.contains(entidade) ) {
+					users.remove(entidade);
+					gravarArquivo();
+					return true;
+				} else {
+					return false;
+				}
 			} else {
 				return false;
 			}
-		} else {
-			return false;
-		}
+		} catch (Exception ex) {
+		    throw new ErroSistema("Erro ao tentar excluir !", ex);
+		}	
 	}
 
-	public Usuario buscarUsuario(Usuario user) {	
-		if(user != null) {
-			if(users.contains(user) ) {
-				return users.get(users.indexOf(user));
+	@Override
+	public Boolean alterar(Usuario entidade) throws ErroSistema {
+		try {
+			if(entidade != null) {
+				if(users.contains(entidade) ) {
+					users.remove(entidade);
+					users.add(entidade);
+					gravarArquivo();
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} catch (Exception ex) {
+		    throw new ErroSistema("Erro ao tentar excluir !", ex);
+		}	
+	}
+
+	@Override
+	public Usuario buscar(Usuario entidade) throws ErroSistema {
+		try {
+			if(entidade != null) {
+				if(users.contains(entidade) ) {
+					return users.get(users.indexOf(entidade));
+				} else {
+					return null;
+				}
 			} else {
 				return null;
 			}
-		} else {
-			return null;
+		} catch (Exception ex) {
+		    throw new ErroSistema("Erro ao tentar excluir !", ex);
 		}
-	}
-	
-	public String getPath() throws UnsupportedEncodingException {
-		String path = this.getClass().getClassLoader().getResource("").getPath();
-		String fullPath = URLDecoder.decode(path, "UTF-8");
-		String pathArr[] = fullPath.split("/WEB-INF/classes/");
-		System.out.println(fullPath);
-		System.out.println(pathArr[0]);
-		fullPath = pathArr[0];
-		//String reponsePath = "";
-		// to read a file from webcontent
-		//reponsePath = new File(fullPath).getPath() + File.separatorChar + "newfile.txt";
-		return fullPath;
 	}
 }
