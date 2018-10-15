@@ -59,9 +59,6 @@ public class LoginController extends AbstractController {
 	}
 
 	private Usuario isValidLogin(String login, String senha) {
-		/*
-		 * TODO Implementar a busca do usuario no arquivo json
-		 */
 		tentativaLogin = tentativaLogin - 1;
 		System.out.println("tentativaLogin : " + tentativaLogin);
 

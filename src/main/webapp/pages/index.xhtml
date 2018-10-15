@@ -1,26 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+ 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
+
+<ui:define name="cabecalho">
 	<title>Tela inicial</title>
-</h:head>
-<h:body>
-	<header>
-		<div style="float: left;">
-			<h:graphicImage library="imagens" name="CINQ_CORES.png" width="100" />
-		</div>
-	</header>
-	<br/>
-	<br/>
-	<br/>
+</ui:define>
+
+<ui:define name="conteudo">
 	<h:form>
 		<p>Bem vindo #{usuarioController.user.nome}</p>
-		<p:commandLink id="logout" action="#{usuarioController.logOut}"
-			value="Sair" />
+		<p:commandButton id="logout" action="#{usuarioController.logOut}" value="Sair" >
+			<p:confirm header="Confirmação" message="Confirma o logout ?"/>
+		</p:commandButton>
 	</h:form>
-</h:body>
-</html>
+</ui:define>
+
+</ui:composition>

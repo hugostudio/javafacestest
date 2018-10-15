@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="sistema.css" />
+
+	<ui:insert name="cabecalho"/>
+</h:head>
+
+<h:body>
+	<header>
+		<div style="float: left;">
+			<h:graphicImage library="imagens" name="CINQ_CORES.png" width="100" />
+		</div>
+		
+		<p:confirmDialog global="true">
+			<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+			<p:commandButton value="Não" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+		</p:confirmDialog>
+	</header>
+	
+	<ui:insert name="conteudo"/>
+	 
+	<ui:insert name="rodape"/>
+</h:body>
+
+</html>
