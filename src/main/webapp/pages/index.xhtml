@@ -28,15 +28,10 @@
 					</f:facet>
 				</p:toolbar>
 
-				<p:panel id="usuario" header="Lista de Usuários">
-					<p:layout style="min-width:400px;min-height:200px;">
-						<p:layoutUnit position="west" resizable="true" size="150"
-							minSize="40" maxSize="150">
-							<p:menu style="width:90%">
-								<p:menuitem value="Incluir" icon="ui-icon-disk" />
-								<p:menuitem value="Alterar" icon="ui-icon-arrowrefresh-1-w" />
-								<p:menuitem value="Excluir" icon="ui-icon-close" />
-							</p:menu>
+				<p:panel id="usuario" header="Lista de usuários cadastrados">
+					<p:layout style="min-width:400px;min-height:200px; height:500px" >
+						<p:layoutUnit position="north" resizable="true" size="55" >
+							<p:commandButton value="Novo Usuário" icon="ui-icon-disk" action="#{usuarioController.navegarNovoUsuario}"/>
 						</p:layoutUnit>
 
 						<p:layoutUnit position="center">
@@ -49,7 +44,11 @@
 								<p:column headerText="Email">
 									<h:outputText value="#{user.email}" />
 								</p:column>
-
+								
+								<p:column headerText="Comando" style="width:20%;">
+									<p:commandButton value="Alterar" icon="ui-icon-arrowrefresh-1-w"/>
+									<p:commandButton value="Excluir" icon="ui-icon-close" />
+								</p:column>
 							</p:dataTable>
 						</p:layoutUnit>
 					</p:layout>

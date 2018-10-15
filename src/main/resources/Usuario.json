@@ -1,1 +1,9 @@
-[{"nome":"Administrador","email":"admin@mail.com","senha":"masterkey"}]
+[{"nome":"Administrador","email":"admin@mail.com","senha":"masterkey"},
+{"nome":"Cordenador1","email":"cord1@mail.com","senha":"cord123"},
+{"nome":"Supervisor1","email":"super1@mail.com","senha":"super123"},
+{"nome":"Cordenador2","email":"cord2@mail.com","senha":"cord123"},
+{"nome":"Supervisor2","email":"super2@mail.com","senha":"super123"},
+{"nome":"Cordenador3","email":"cord3@mail.com","senha":"cord123"},
+{"nome":"Supervisor3","email":"super3@mail.com","senha":"super123"},
+{"nome":"Cordenador4","email":"cord4@mail.com","senha":"cord123"},
+{"nome":"Supervisor4","email":"super4@mail.com","senha":"super123"}]

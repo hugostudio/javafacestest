@@ -1,0 +1,58 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="cabecalho">
+		<title>Cadastro de Usuário</title>
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="formUsuario">
+			<p:panel id="basic" header="" style="margin-bottom:20px">
+
+				<p:panel id="usuario" header="Cadastro de Usuário">
+					<p:layout style="min-width:400px;min-height:200px; height:200px;">
+
+						<p:layoutUnit position="center">
+							<p:panelGrid columns="2">
+								<p:outputLabel value="Email :"/>
+								<p:inputText id="Email" value="" required="true" maxlength="50" size="40"/>
+								
+								<p:outputLabel value="Nome :"/>
+								<p:inputText id="nome" value="" required="true" maxlength="50" size="40"/>
+						
+								<p:outputLabel value="Senha :"/>
+								<p:password id="senha" value="" required="true" maxlength="50" size="40"/>
+							
+							</p:panelGrid>
+							<p:panelGrid columns="1">
+								<p:outputLabel value="confirme a senha :" />
+								<p:password id="senhaConfirm" value="" required="true" maxlength="50" size="40"/>
+							</p:panelGrid>
+						</p:layoutUnit>
+					</p:layout>
+				</p:panel>
+				<p:toolbar>
+					<f:facet name="left">
+						<p:commandButton value="Salvar"	action="#{usuarioController.navegarHome}">
+							<p:confirm header="Confirmação" message="Confirma a inclusão do novo usuário ?" />
+						</p:commandButton>
+						<p:commandButton value="Cancelar" action="#{usuarioController.navegarHome}">
+							<p:confirm header="Confirmação" message="Confirma o cancelamento ?" />
+						</p:commandButton>
+					</f:facet>
+					<f:facet name="right">
+						<p:outputLabel value=" Usuario: #{loginController.usuarioLogado.nome}" />
+						<p:outputLabel value=" " />
+						<p:commandButton value="Logout" action="#{loginController.logOut}">
+							<p:confirm header="Confirmação" message="Confirma o logout ?" />
+						</p:commandButton>
+					</f:facet>
+				</p:toolbar>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

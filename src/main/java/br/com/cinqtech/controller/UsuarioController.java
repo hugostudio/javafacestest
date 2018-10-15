@@ -28,11 +28,18 @@ public class UsuarioController extends CrudController{
 		this.usuarioDao = usuarioDao;
 	}
 
+	public String navegarNovoUsuario() {
+		mudarStatusInserir();
+		return "/pages/cadastroUsuario.xhtml?faces-redirect=true";
+	}
+	
 	public String navegarListarAlbum() {
 		return "/pages/listarAlbum.xhtml?faces-redirect=true";
 	}
 	
 	public String navegarHome() {
+		mudarStatusBuscar();
 		return "/pages/index.xhtml?faces-redirect=true";
 	}	
+	
 }
