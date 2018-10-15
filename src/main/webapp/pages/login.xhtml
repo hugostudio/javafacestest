@@ -1,18 +1,26 @@
-<ui:composition template="/WEB-INF/templates/template.xhtml"
- 	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
 
-<ui:define name="cabecalho">
-	<title>Login</title>
-</ui:define>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="sistema.css" />
+	<ui:insert name="cabecalho"/>
+</h:head>
+
+<h:body>
+	<header>	
+		<h:form id="formMsg">
+		    <p:growl showDetail="false" life="3000" />
+		</h:form>		
+	</header>
 	
-<ui:define name="conteudo">
 	<div id="div-login">
 		<h:form id="frmLogin">
-			<p:growl showDetail="false" life="3000" />
 			<p:dialog header="Login - Informe usuario e senha" id="dialog"
 				minWidth="350" width="350" modal="true" closable="false"
 				position="center" showEffect="slide" draggable="false"
@@ -45,5 +53,6 @@
 			</p:dialog>
 		</h:form>
 	</div>
-</ui:define>
-</ui:composition> 
+</h:body>
+
+</html>	

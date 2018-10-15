@@ -9,20 +9,26 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="sistema.css" />
-
 	<ui:insert name="cabecalho"/>
 </h:head>
 
 <h:body>
 	<header>
-		<div style="float: left;">
-			<h:graphicImage library="imagens" name="CINQ_CORES.png" width="100" />
+		<div style="float:left; margin-top:15px; margin-left: 20px; width=10%;">
+			<h:graphicImage library="imagens" name="CINQ_CORES.png" width="100"/>
 		</div>
+		<div style="float:left; margin-top:10x; margin-left: 20px; width=90%;">
+			<h1><h:outputText value="Teste java JSF Prime Faces" style="color:#ffffff;" /></h1>
+		</div> 
 		
 		<p:confirmDialog global="true">
 			<p:commandButton value="Sim" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
 			<p:commandButton value="Não" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
 		</p:confirmDialog>
+		
+		<h:form id="formMsg">
+		    <p:growl showDetail="false" life="3000" />
+		</h:form>		
 	</header>
 	
 	<ui:insert name="conteudo"/>

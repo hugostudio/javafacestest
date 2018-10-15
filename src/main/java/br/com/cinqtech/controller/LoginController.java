@@ -5,6 +5,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import br.com.cinqtech.exception.ErroSistema;
 import br.com.cinqtech.model.Usuario;
@@ -27,6 +28,21 @@ public class LoginController extends AbstractController {
 	private String senha;
 	private Integer tentativaLogin = 3;
 
+	private Usuario usuarioLogado;
+
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario user) {
+		this.usuarioLogado = user;
+	}
+	
+	public String logOut() {
+		((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false)).invalidate();
+		return "index.xhtml?faces-redirect=true";
+	}
+	
 	public Integer getTentativaLogin() {
 		return tentativaLogin;
 	}
@@ -80,13 +96,13 @@ public class LoginController extends AbstractController {
 
 		} else {
 
-			Usuario user = isValidLogin(login, senha);
+			usuarioLogado = isValidLogin(login, senha);
 
-			if (user != null) {
-				usuarioController.setUser(user);
+			if (usuarioLogado != null) {
+
 				FacesContext context = FacesContext.getCurrentInstance();
 				HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-				request.getSession().setAttribute("user", user);
+				request.getSession().setAttribute("user", usuarioLogado);
 				return "index.xhtml?faces-redirect=true";
 			}
 			displayErrorMessage("Verifique o usuário e senha !");

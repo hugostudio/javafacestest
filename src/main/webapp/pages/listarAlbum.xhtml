@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="cabecalho">
-		<title>Tela inicial</title>
+		<title>Listar Álbum</title>
 	</ui:define>
 
 	<ui:define name="conteudo">
@@ -14,30 +14,22 @@
 			<p:panel id="basic" header="" style="margin-bottom:20px">
 				<p:toolbar>
 					<f:facet name="left">
-						<p:commandButton value="Home" disabled="true" />
-						<p:commandButton value="Lista de Álbums"
-							action="#{usuarioController.navegarListarAlbum}" />
+						<p:commandButton value="Home"
+							action="#{usuarioController.navegarHome}" />
+						<p:commandButton value="Lista de Álbums" disabled="true" />
 					</f:facet>
 					<f:facet name="right">
 						<p:outputLabel
 							value=" Usuario: #{loginController.usuarioLogado.nome}" />
-						<p:outputLabel value=" " />
+						<p:outputLabel value="      " />
 						<p:commandButton value="Logout" action="#{loginController.logOut}">
 							<p:confirm header="Confirmação" message="Confirma o logout ?" />
 						</p:commandButton>
 					</f:facet>
 				</p:toolbar>
 
-				<p:panel id="usuario" header="Lista de Usuários">
+				<p:panel id="usuario" header="Lista de Álbuns">
 					<p:layout style="min-width:400px;min-height:200px;">
-						<p:layoutUnit position="west" resizable="true" size="150"
-							minSize="40" maxSize="150">
-							<p:menu style="width:90%">
-								<p:menuitem value="Incluir" icon="ui-icon-disk" />
-								<p:menuitem value="Alterar" icon="ui-icon-arrowrefresh-1-w" />
-								<p:menuitem value="Excluir" icon="ui-icon-close" />
-							</p:menu>
-						</p:layoutUnit>
 
 						<p:layoutUnit position="center">
 							<p:dataTable var="user"

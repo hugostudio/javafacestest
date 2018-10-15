@@ -22,7 +22,7 @@ import br.com.cinqtech.model.Usuario;
 
 public class UsuarioDao implements CrudDao<Usuario>{
 
-	private static final String nomeArq = "Usuario.json"; //"WEB-INF\\classes\\Usuario.json";
+	private static final String nomeArq = "Usuario.json";
 	
 	private static UsuarioDao INSTANCE;
 	

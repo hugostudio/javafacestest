@@ -10,27 +10,27 @@ package br.com.cinqtech.controller;
 public class CrudController extends AbstractController {
 	private String estadoCrud = "buscar";
 	
-	public Boolean isInserir() {
+	public Boolean isStatusInserir() {
 		return "inserir".equals(estadoCrud);
 	}
 	
-	public Boolean isAlterar() {
+	public Boolean isStatusAlterar() {
 		return "alterar".equals(estadoCrud);
 	}
 	
-	public Boolean isBuscar() {
+	public Boolean isStatusBuscar() {
 		return "buscar".equals(estadoCrud);
 	}
 	
-	public void mudarParaInserir() {
+	public void mudarStatusInserir() {
 		estadoCrud = "inserir";
 	}
 	
-	public void mudarParaAlterar() {
+	public void mudarStatusAlterar() {
 		estadoCrud = "alterar";
 	}
 	
-	public void mudarParaBuscar() {
+	public void mudarStatusBuscar() {
 		estadoCrud = "buscar";
 	}
 }

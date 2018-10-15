@@ -2,10 +2,8 @@ package br.com.cinqtech.controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
-import br.com.cinqtech.model.Usuario;
+import br.com.cinqtech.model.dao.UsuarioDao;
 
 /**
  * 
@@ -20,19 +18,21 @@ public class UsuarioController extends CrudController{
 	
 	public static final String INJECTION_NAME = "#{usuarioController}";
 	
-	private Usuario user;
+	private UsuarioDao usuarioDao = UsuarioDao.getInstace();
 
-	public Usuario getUser() {
-		return user;
+	public UsuarioDao getUsuarioDao() {
+		return usuarioDao;
 	}
 
-	public void setUser(Usuario user) {
-		this.user = user;
+	public void setUsuarioDao(UsuarioDao usuarioDao) {
+		this.usuarioDao = usuarioDao;
+	}
+
+	public String navegarListarAlbum() {
+		return "/pages/listarAlbum.xhtml?faces-redirect=true";
 	}
 	
-	public String logOut() {
-		((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false)).invalidate();
-		return "index.xhtml?faces-redirect=true";
-	}
-
+	public String navegarHome() {
+		return "/pages/index.xhtml?faces-redirect=true";
+	}	
 }
