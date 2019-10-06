@@ -1,4 +1,4 @@
-package br.com.cinqtech.controller;
+package br.com.mjv.controller;
 
 /**
  * 

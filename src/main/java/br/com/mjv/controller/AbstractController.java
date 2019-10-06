@@ -1,6 +1,6 @@
-package br.com.cinqtech.controller;
+package br.com.mjv.controller;
 
-import br.com.cinqtech.util.JSFUtil;
+import br.com.mjv.util.JSFUtil;
 
 /**
  * 

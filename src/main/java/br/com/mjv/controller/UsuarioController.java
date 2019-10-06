@@ -1,9 +1,9 @@
-package br.com.cinqtech.controller;
+package br.com.mjv.controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import br.com.cinqtech.model.dao.UsuarioDao;
+import br.com.mjv.model.dao.UsuarioDao;
 
 /**
  * 
@@ -13,7 +13,7 @@ import br.com.cinqtech.model.dao.UsuarioDao;
  */
 
 @SessionScoped
-@ManagedBean(name="usuarioController")
+@ManagedBean
 public class UsuarioController extends CrudController{
 	
 	public static final String INJECTION_NAME = "#{usuarioController}";

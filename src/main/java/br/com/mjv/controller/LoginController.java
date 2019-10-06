@@ -1,4 +1,4 @@
-package br.com.cinqtech.controller;
+package br.com.mjv.controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -7,9 +7,9 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import br.com.cinqtech.exception.ErroSistema;
-import br.com.cinqtech.model.Usuario;
-import br.com.cinqtech.model.dao.UsuarioDao;
+import br.com.mjv.exception.ErroSistema;
+import br.com.mjv.model.Usuario;
+import br.com.mjv.model.dao.UsuarioDao;
 
 /**
  * 
@@ -24,6 +24,9 @@ public class LoginController extends AbstractController {
 	@ManagedProperty(value = UsuarioController.INJECTION_NAME)
 	private UsuarioController usuarioController;
 
+	@ManagedProperty(value = RecaptchaBean.INJECTION_NAME)
+	private RecaptchaBean recaptchaBean;
+	
 	private String login;
 	private String senha;
 	private Integer tentativaLogin = 3;
@@ -96,18 +99,33 @@ public class LoginController extends AbstractController {
 
 		} else {
 
-			usuarioLogado = isValidLogin(login, senha);
+			String gRecaptchaResponse = FacesContext.getCurrentInstance().
+				        getExternalContext().getRequestParameterMap().get("g-recaptcha-response");
+			boolean verify = recaptchaBean.verify(gRecaptchaResponse);
+			
+	        if(verify){	             
+	             usuarioLogado = isValidLogin(login, senha);
 
-			if (usuarioLogado != null) {
-
-				FacesContext context = FacesContext.getCurrentInstance();
-				HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-				request.getSession().setAttribute("user", usuarioLogado);
-				return "index.xhtml?faces-redirect=true";
-			}
-			displayErrorMessage("Verifique o usuário e senha !");
+	 			if (usuarioLogado != null) {
+	 				FacesContext context = FacesContext.getCurrentInstance();
+	 				HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+	 				request.getSession().setAttribute("user", usuarioLogado);
+	 				return "index.xhtml?faces-redirect=true";
+	 			}
+	 			displayErrorMessage("Verifique o usuário e senha !");
+	        } else {
+	        	displayErrorMessage("Select Captcha !");	             	             
+	            return null;
+	        }				        			
 		}
-
 		return null;
+	}
+
+	public RecaptchaBean getRecaptchaBean() {
+		return recaptchaBean;
+	}
+
+	public void setRecaptchaBean(RecaptchaBean recaptchaBean) {
+		this.recaptchaBean = recaptchaBean;
 	}
 }

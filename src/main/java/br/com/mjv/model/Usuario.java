@@ -1,4 +1,4 @@
-package br.com.cinqtech.model;
+package br.com.mjv.model;
 
 import java.io.Serializable;
 

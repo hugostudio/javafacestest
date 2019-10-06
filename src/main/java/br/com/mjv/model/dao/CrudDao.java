@@ -1,6 +1,6 @@
-package br.com.cinqtech.model.dao;
+package br.com.mjv.model.dao;
 
-import br.com.cinqtech.exception.ErroSistema;
+import br.com.mjv.exception.ErroSistema;
 
 /**
  * 

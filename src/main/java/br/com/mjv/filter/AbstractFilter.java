@@ -1,4 +1,4 @@
-package br.com.cinqtech.filter;
+package br.com.mjv.filter;
 
 import java.io.IOException;
 
@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-
 
 /**
  * 

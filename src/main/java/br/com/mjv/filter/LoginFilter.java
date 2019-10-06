@@ -1,4 +1,4 @@
-package br.com.cinqtech.filter;
+package br.com.mjv.filter;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import br.com.cinqtech.model.Usuario;
+import br.com.mjv.model.Usuario;
 
 /**
  * 

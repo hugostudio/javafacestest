@@ -1,4 +1,4 @@
-package br.com.cinqtech.model.dao;
+package br.com.mjv.model.dao;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -11,8 +11,8 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import br.com.cinqtech.exception.ErroSistema;
-import br.com.cinqtech.model.Usuario;
+import br.com.mjv.exception.ErroSistema;
+import br.com.mjv.model.Usuario;
 /**
  * 
  * @author Hugo Leonardo

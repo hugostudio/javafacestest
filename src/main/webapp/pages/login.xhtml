@@ -1,58 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:p="http://primefaces.org/ui">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="css" name="sistema.css" />
-	<ui:insert name="cabecalho"/>
+	<ui:insert name="cabecalho" />
+
+	<script src="https://www.google.com/recaptcha/api.js" async="true" defer="true"></script>
+	<script type="text/javascript" >
+		function onSubmit(token) {
+			console.log(token);
+			var jsfCommandButton = document.getElementById("frmLogin:btSubmit");
+			jsfCommandButton.click();
+		}
+	</script>
 </h:head>
 
 <h:body>
-	<header>	
+	<header>
 		<h:form id="formMsg">
-		    <p:growl showDetail="false" life="3000" />
-		</h:form>		
+			<p:growl showDetail="false" life="3000" />
+		</h:form>
 	</header>
-	
+
 	<div id="div-login">
 		<h:form id="frmLogin">
 			<p:dialog header="Login - Informe usuario e senha" id="dialog"
 				minWidth="350" width="350" modal="true" closable="false"
 				position="center" showEffect="slide" draggable="false"
 				resizable="false" visible="true">
-				
+
 				<div style="float: left;">
-					<h:graphicImage library="imagens" name="CINQ_CORES.png" width="100" />
+					<h:graphicImage library="imagens" name="mjv.png" width="100" />
 				</div>
-				
+
 				<h:panelGrid columns="2" styleClass="noBorders">
-				
+
 					<p:outputLabel value="Usuário" />
-					<p:inputText value="#{loginController.login}" label="Login" requiredMessage="O preenchimento do Usuário é obrigatório" validatorMessage="Usuário com tamanho errado"
-						placeholder="informe o email do usuário" id="login" rendered="true" required="true" size="25">
+					<p:inputText value="#{loginController.login}" label="Login"
+						requiredMessage="O preenchimento do Usuário é obrigatório"
+						validatorMessage="Usuário com tamanho errado"
+						placeholder="informe o email do usuário" id="login"
+						rendered="true" required="true" size="20">
 						<f:validateLength minimum="4" maximum="50" />
 					</p:inputText>
 
 					<p:outputLabel value="Senha" />
-					<p:password value="#{loginController.senha}" label="Password" requiredMessage="O preenchimento da Senha é obrigatório" validatorMessage="Senha com tamanho errado"
-						id="senha" rendered="true" required="true" size="25"
-						autocomplete="off">
+					<p:password value="#{loginController.senha}" label="Password"
+						requiredMessage="O preenchimento da Senha é obrigatório"
+						validatorMessage="Senha com tamanho errado" id="senha"
+						rendered="true" required="true" size="15" autocomplete="off">
 						<f:validateLength minimum="4" maximum="50" />
 					</p:password>
-					
-					<p:outputLabel />
-					<p:commandButton action="#{loginController.entrar}" value="Entrar"
-						ajax="false" icon="ui-icon-star" />
+
+					<p:commandButton id="btSubmit" style="display:none" action="#{loginController.entrar}" value="Entrar"
+						ajax="false" icon="ui-icon-star"/>					
+					<p:commandButton id="btRecaptcha" onclick="javascript:grecaptcha.execute();" value="Recaptcha"/>	
 				</h:panelGrid>
-				
 			</p:dialog>
+			<div class="g-recaptcha" data-sitekey="#{recaptchaBean.siteKey}"
+				data-callback="onSubmit" data-size="invisible"></div>
 		</h:form>
 	</div>
 </h:body>
-
-</html>	
+</html>
